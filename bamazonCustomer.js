@@ -2,12 +2,15 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var figlet = require('figlet');
+var clc = require('cli-color');
+//global variables for color
+var tableColor = clc.red.bold;
 //create connection to db
 var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "Raymondweil1",
   database: "Bamazon"
 })
 
@@ -27,11 +30,11 @@ function start(){
 connection.query('SELECT * FROM Products', function(err, res){
   if(err) throw err;
 
-  console.log('----------------------------------------------------------------------------------------------------')
+  console.log('-----------------------------------------------------------------------------------------------------')
 
   for(var i = 0; i<res.length;i++){
-    console.log("ID: " + res[i].ItemID + " | " + "Product: " + res[i].ProductName + " | " + "Department: " + res[i].DepartmentName + " | " + "Price: " + res[i].Price + " | " + "QTY: " + res[i].StockQuantity);
-    console.log('--------------------------------------------------------------------------------------------------')
+    console.log(tableColor("ID: ") + tableColor(res[i].ItemID) + tableColor(" | ") + tableColor("Product: ") + tableColor(res[i].ProductName) + tableColor(" | ") + tableColor("Department: ") + tableColor(res[i].DepartmentName) + tableColor(" | ") + tableColor("Price: ") + tableColor(res[i].Price) + tableColor(" | ") + tableColor("QTY: ") + tableColor(res[i].StockQuantity));
+    console.log('-----------------------------------------------------------------------------------------------------')
   }
 
   console.log(' ');
@@ -39,7 +42,7 @@ connection.query('SELECT * FROM Products', function(err, res){
     {
       type: "input",
       name: "id",
-      message: "What is the ID of the product you would like to purchase?",
+      message: "What is the ID of the product you want purchase?",
       validate: function(value){
         if(isNaN(value) == false && parseInt(value) <= res.length && parseInt(value) > 0){
           return true;
@@ -51,7 +54,7 @@ connection.query('SELECT * FROM Products', function(err, res){
     {
       type: "input",
       name: "qty",
-      message: "How much would you like to purchase?",
+      message: "How many do you want?",
       validate: function(value){
         if(isNaN(value)){
           return false;
@@ -65,9 +68,9 @@ connection.query('SELECT * FROM Products', function(err, res){
       var howMuchToBuy = parseInt(ans.qty);
       var grandTotal = parseFloat(((res[whatToBuy].Price)*howMuchToBuy).toFixed(2));
 
-      //check if quantity is sufficient
+      //checks to see if it is in stock
       if(res[whatToBuy].StockQuantity >= howMuchToBuy){
-        //after purchase, updates quantity in Products
+        //updates quantity in products
         connection.query("UPDATE Products SET ? WHERE ?", [
         {StockQuantity: (res[whatToBuy].StockQuantity - howMuchToBuy)},
         {ItemID: ans.id}
@@ -85,18 +88,17 @@ connection.query('SELECT * FROM Products', function(err, res){
             }
           }
           
-          //updates totalSales in departments table
+          //updates sales in department table
           connection.query("UPDATE Departments SET ? WHERE ?", [
           {TotalSales: deptRes[index].TotalSales + grandTotal},
           {DepartmentName: res[whatToBuy].DepartmentName}
           ], function(err, deptRes){
               if(err) throw err;
-              //console.log("Updated Dept Sales.");
           });
         });
 
       } else{
-        console.log("Sorry, there's not enough in stock!");
+        console.log("Sorry we don't have enough!");
       }
 
       reprompt();
@@ -109,12 +111,12 @@ function reprompt(){
   inquirer.prompt([{
     type: "confirm",
     name: "reply",
-    message: "Would you like to purchase another item?"
+    message: "Do you want anything else?"
   }]).then(function(ans){
     if(ans.reply){
       start();
     } else{
-      console.log("See you soon!");
+      console.log("Hope you come back and see you soon!");
     }
   });
 }
