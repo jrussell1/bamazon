@@ -1,20 +1,20 @@
-# bamazon
+# Bamazon
 
-# Node.js & MySQL
+## Node.js & MySQL
 
 
 
-## Overview
+### Overview
 
 An Amazon-like storefront that takes in orders from a "customer" and depletes the stock from the store's inventory in the DB.
 
 Make sure you save and require the MySQL and Inquirer npm packages in your homework files--your app will need them for data input and storage.
 
-## NPM Installs
+### NPM Installs
 
 Install the require, figlet and cli-color packages.
 
-### Overview of MySQL database - located in the schema.sql file
+#### Overview of MySQL database - located in the schema.sql file
 
 Database name is Bamazon.
 
@@ -26,7 +26,7 @@ The DB was populated with 10 products.
 
 ![alt text](./images/bamazondb.PNG)
 
-### Overview of JS file
+#### Overview of JS file
 
 There is a Node application called bamazonCustomer.js. Running this application will first display all of the items available for sale. 
 
