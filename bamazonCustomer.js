@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "Raymondweil1",
   database: "Bamazon"
 })
 
@@ -77,8 +77,10 @@ connection.query('SELECT * FROM Products', function(err, res){
         ], function(err, result){
             if(err) throw err;
             console.log("Success! Your total is $" + grandTotal.toFixed(2) + ". Your item(s) will be shipped to you in 3-5 business days.");
-        });
-
+        console.log("error");
+          });
+        //console.log("error");
+        
         connection.query("SELECT * FROM Departments", function(err, deptRes){
           if(err) throw err;
           var index;
@@ -103,7 +105,7 @@ connection.query('SELECT * FROM Products', function(err, res){
 
       reprompt();
     })
-})
+  })
 }
 
 //asks if they would like to purchase another item
