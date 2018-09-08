@@ -24,7 +24,7 @@ Products has 4 columns that are broken down into the Item's ID, name of the prod
 
 The DB was populated with 10 products.
 
-![alt text] ()
+![alt text](./images/bamazondb.PNG)
 
 ### Overview of JS file
 
@@ -43,8 +43,8 @@ If there is not sufficient quantity in stock the app will log "Sorry we don't ha
 If user asks for a product that has sufficient quantity the app will log a success message with the price they are charged and if they want to buy any more items.
 
 
-![alt text] ()
+![alt text](./images/bamazonUser1.PNG)
 
-![alt text] ()
+![alt text](./images/bamazonUser2.PNG)
 
 
