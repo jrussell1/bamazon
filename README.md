@@ -8,7 +8,7 @@
 
 An Amazon-like storefront that takes in orders from a "customer" and depletes the stock from the store's inventory in the DB.
 
-Make sure you save and require the MySQL and Inquirer npm packages in your homework files--your app will need them for data input and storage.
+Wach the demo at https://youtu.be/tYeud-rd75I
 
 ### NPM Installs
 
