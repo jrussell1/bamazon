@@ -8,8 +8,6 @@
 
 An Amazon-like storefront that takes in orders from a "customer" and depletes the stock from the store's inventory in the DB.
 
-Wach the demo at https://youtu.be/tYeud-rd75I
-
 ### NPM Installs
 
 Install the require, figlet and cli-color packages.
