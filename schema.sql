@@ -1,19 +1,20 @@
+DROP DATABASE IF EXISTS Bamazon;
 CREATE DATABASE Bamazon;
 
 USE Bamazon;
 
-CREATE TABLE Products(
-    ItemID MEDIUMINT AUTO_INCREMENT NOT NULL,
-    ProductName VARCHAR(100) NOT NULL,
-    DepartmentName VARCHAR(50) NOT NULL,
-    Price DECIMAL(10,2) NOT NULL,
-    StockQuantity INT(10) NOT NULL,
-    primary key(ItemID)
+CREATE TABLE products(
+  item_id INT AUTO_INCREMENT NOT NULL,
+  product_name VARCHAR(45) NOT NULL,
+  department_name VARCHAR(45) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  stock_quantity INT(10) NOT NULL,
+  primary key(item_id)
 );
 
-select * from Products;
+SELECT * FROM products;
 
-INSERT INTO Products(ProductName,DepartmentName,Price,StockQuantity)
+INSERT INTO products(product_name, department_name,price,stock_quantity)
 VALUES ("Batman Returns","ENTERTAINMENT",30,200),
     ("Call of Duty","ENTERTAINMENT",50,100),
     ("Organic Whole Milk","GROCERY",50,50),
@@ -24,13 +25,3 @@ VALUES ("Batman Returns","ENTERTAINMENT",30,200),
     ("Crazy Rich Asians","ENTERTAINMENT",30,50),
     ("Chutes and Ladders","ENTERTAINMENT",30,35),
     ("Risk","ENTERTAINMENT", 80,23);
-
-CREATE TABLE Departments(
-    DepartmentID MEDIUMINT AUTO_INCREMENT NOT NULL,
-    DepartmentName VARCHAR(50) NOT NULL,
-    OverHeadCosts DECIMAL(10,2) NOT NULL,
-    TotalSales DECIMAL(10,2) NOT NULL,
-    PRIMARY KEY(DepartmentID));
-
-
-
